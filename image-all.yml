@@ -1,0 +1,6 @@
+- name: Transfer and execute a script.
+  hosts: hostUBUNTU
+  remote_user: root
+  tasks:
+     - name: Execute the script
+       command: sh install.sh
