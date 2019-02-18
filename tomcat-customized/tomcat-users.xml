@@ -22,7 +22,7 @@
 
 
 <role rolename="manager-gui"/>
-<user username="tomcat" password="tomcat" roles="manager-gui,manager-script"/>
+<user username="tomcat" password="tomcat" roles="manager-gui"/>
   
 <!--
   NOTE:  By default, no user is included in the "manager-gui" role required
