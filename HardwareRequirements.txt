@@ -1,0 +1,22 @@
+Hardware Requirements
+1. Kubernetes:
+  Master: Ubuntu One Primary t2.large/t3.large (2 vCPU, 8GB) instance, One Backup t2.medium/t3.medium (2 vCPU, 4GB) instance
+  Worker: Ubuntu Two t2(t3) xlarge (4 vCPU, 16GB) instances
+  
+2. Development Environment:
+  Ubuntu: t3.medium (1 vCPU, 8GB)
+  Windows: t3.medium (1 vCPU, 8GB)
+
+3. Volume Server: 
+
+4. Database Server: Ubuntu t3.medium (1 vCPU, 16GB) instance
+
+5. Jenkins Server: Ubuntu t3.large 2 vCPU, 16GB) instance
+
+6. Testing Environment:
+   Ubuntu : t3.medium (1 vCPU, 16GB)
+   CentOS : 
+   RedHat
+   Windows
+   Debian
+   Mac
