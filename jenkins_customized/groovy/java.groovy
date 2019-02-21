@@ -1,18 +1,24 @@
-import hudson.model.JDK
-import hudson.tools.InstallSourceProperty
-import hudson.tools.ZipExtractionInstaller
+import jenkins.model.*
+import hudson.model.*
+import groovy.io.FileType
 
-def descriptor = new JDK.DescriptorImpl();
-def List<JDK> installations = []
+def jdkDir = "/usr/java"
+def inst = Jenkins.getInstance()
+def desc = inst.getDescriptor("hudson.model.JDK")
 
-javaTools=[['name':'jdk8', 'url':'file:/var/jenkins_home/downloads/jdk-8u144-linux-x64.tar.gz', 'subdir':'jdk1.8.0_144']]
-
-javaTools.each { javaTool ->
-    println("Setting up tool: ${javaTool.name}")
-    def installer = new ZipExtractionInstaller(javaTool.label as String, javaTool.url as String, javaTool.subdir as String);
-    def jdk = new JDK(javaTool.name as String, null, [new InstallSourceProperty([installer])])
-    installations.add(jdk)
+def dirs = []
+def currentDir = new File(jdkDir)
+currentDir.eachFile FileType.DIRECTORIES, {
+    dirs << it.name
 }
 
-descriptor.setInstallations(installations.toArray(new JDK[installations.size()]))
-descriptor.save()
+def installations = []
+for (dir in dirs) {
+  def installation = new JDK(dir, jdkDir + "/" + dir)
+  installations.push(installation)
+}
+
+desc.setInstallations(installations.toArray(new JDK[0]))
+
+desc.save()
+inst.save()
