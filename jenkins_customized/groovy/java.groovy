@@ -2,7 +2,7 @@ import jenkins.model.*
 import hudson.model.*
 import groovy.io.FileType
 
-def jdkDir = "/usr/java"
+def jdkDir = "/usr/java/latest"
 def inst = Jenkins.getInstance()
 def desc = inst.getDescriptor("hudson.model.JDK")
 
