@@ -24,7 +24,7 @@ RUN ln -sf /install-plugins.sh /usr/local/bin/install-plugins.sh
 ENV BITNAMI_APP_NAME="jenkins" \
     BITNAMI_IMAGE_VERSION="2.150.3-ol-7-r1" \
     DISABLE_JENKINS_INITIALIZATION="no" \
-    JAVA_OPTS="-Djenkins.install.runSetupWizard=false"" \
+    JAVA_OPTS="-Djenkins.install.runSetupWizard=false" \
     JENKINS_HOME="/opt/bitnami/jenkins/jenkins_home" \
     JENKINS_PASSWORD="admin" \
     JENKINS_USERNAME="admin" \
