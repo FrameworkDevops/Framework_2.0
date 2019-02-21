@@ -1,5 +1,5 @@
 FROM bitnami/oraclelinux-extras:7-r263
-LABEL maintainer "Bitnami <containers@bitnami.com>"
+LABEL maintainer "Framework <containers@framework.com>"
 # Install required system packages and dependencies
 RUN install_packages cyrus-sasl-lib fontconfig glibc keyutils-libs krb5-libs libcom_err libcurl libgcc libidn libselinux libssh2 nspr nss nss-softokn-freebl nss-util openldap openssl-libs pcre unzip zlib wget
 
