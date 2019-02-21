@@ -20,6 +20,7 @@ RUN bitnami-pkg unpack jenkins-2.150.3-0 --checksum c7d72ad858768343374e28eb336e
 RUN mkdir -p /usr/share/jenkins/ref
 
 COPY rootfs /
+RUN /install-plugins.sh < /plugins.txt
 RUN ln -sf /install-plugins.sh /usr/local/bin/install-plugins.sh
 ENV BITNAMI_APP_NAME="jenkins" \
     BITNAMI_IMAGE_VERSION="2.150.3-ol-7-r1" \
