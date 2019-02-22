@@ -20,7 +20,6 @@ git-tag-message
 github
 gitlab-plugin
 gravatar
-http_request
 job-dsl
 job-import-plugin
 mailer
