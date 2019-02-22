@@ -9,9 +9,10 @@ buildresult-trigger
 copyartifact
 credentials
 delivery-pipeline-plugin
+deploy
 dependency-check-jenkins-plugin
+deployit-plugin
 email-ext
-envinject
 external-monitor-job
 fxcop-runner
 git
@@ -20,6 +21,13 @@ git-tag-message
 github
 gitlab-plugin
 gravatar
+greenballs
+groovy-events-listener-plugin-master
+groovy-events-listener-plugin
+groovy-label-assignment
+groovy-postbuild
+groovy-remote
+groovy
 job-dsl
 job-import-plugin
 mailer
@@ -27,6 +35,10 @@ msbuild
 mstest
 mstestrunner
 newrelic-deployment-notifier
+nexus-artifact-uploader
+nexus-task-runner
+nexus-jenkins-plugin
+nunit
 nunit
 parameterized-trigger
 performance
