@@ -39,7 +39,6 @@ nexus-artifact-uploader
 nexus-task-runner
 nexus-jenkins-plugin
 nunit
-nunit
 parameterized-trigger
 performance
 powershell
