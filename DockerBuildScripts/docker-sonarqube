@@ -1,0 +1,49 @@
+node
+  {
+   
+    stage('Sonarqube container up')
+    {
+sh label: '', script: '''
+
+name='sonarqube'
+
+echo "container $name"
+
+if [[ $(docker ps --filter "name=^/$name$" --format '{{.Names}}') == $name ]]; then
+docker stop $name
+echo "container $name stopped"
+
+docker rm $name
+echo "container $name removed"
+else
+
+echo "$name container not present!"
+
+fi
+
+#-----------------------------------
+img='sonarqube:latest'
+
+if [[ ! -z $(docker images -q $img) ]]; then
+
+docker rmi $img
+
+echo "$img removed!!"
+else
+
+echo "$img not present"
+
+fi
+
+'''
+}
+     stage('sonarqube container pull'){   
+    sh 'docker pull sonarqube:latest'
+        
+    }
+    
+    stage('container execution'){
+    sh 'docker run -d -p 9000:9000 --name=sonarqube -v sonar_vol_conf:/opt/sonarqube/conf  -v sonar_vol_data:/opt/sonarqube/data -v sonar_vol_logs:/opt/sonarqube/logs -v sonar_vol_extensions:/opt/sonarqube/extensions sonarqube'
+    }
+
+  } 
