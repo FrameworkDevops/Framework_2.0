@@ -1,0 +1,64 @@
+node
+  {
+    stage('Cloning git repository')
+    {
+        checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'PerBuildTag']], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/FrameworkDevops/Framework_2.0.git']]])
+    }
+    
+    stage('check for existing images')
+    {
+        
+        sh label: '', script: '''
+        
+        name='tomcat'
+
+echo "container $name"
+
+if [[ $(docker ps --filter "name=^/$name$" --format '{{.Names}}') == $name ]]; then
+docker stop $name
+echo "container $name stopped"
+
+docker rm $name
+echo "container $name removed"
+else
+
+echo "$name container not present!"
+
+fi
+
+#-----------------------------------
+img='frameworkdevops/framework_1.0:tomcat'
+
+if [[ ! -z $(docker images -q $img) ]]; then
+
+docker rmi $img
+
+echo "$img removed!!"
+else
+
+echo "$img not present"
+
+fi
+        '''
+        
+    }
+
+    stage('Building docker image for tomcat')
+    {
+        sh 'docker build -t frameworkdevops/framework_1.0:tomcat ${WORKSPACE}/tomcat-customized'
+        
+        withCredentials([string(credentialsId: 'dockerpwd', variable: 'dockerpwd')]) 
+        {
+         
+         sh 'docker login -u frameworkdevops -p ${dockerpwd}'
+            
+        }
+        
+         //sh 'docker push frameworkdevops/framework_1.0:tomcat'
+    }
+    stage('container execution'){
+        
+    
+    sh 'docker run -d -p 8070:8080 --name=tomcat -v ${JOB_NAME}_tomcat:/usr/local/tomcat frameworkdevops/framework_1.0:tomcat'
+  }
+  }
