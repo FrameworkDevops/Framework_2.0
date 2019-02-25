@@ -1,0 +1,45 @@
+node
+  {
+   
+    stage('Check wheher nexus container exists')
+    {
+sh label: '', script: '''
+
+name='nexus'
+echo "container $nexus"
+
+
+if [[ $(docker ps --filter "name=^/$name$" --format '{{.Names}}') == $name ]]; then
+docker stop $name
+echo "container $name stopped"
+
+docker rm $name
+echo "container $name removed"
+else
+
+echo "$name container not present!"
+
+fi
+
+#-----------------------------------
+img='sonatype/nexus3:latest'
+
+if [[ ! -z $(docker images -q $img) ]]; then
+
+docker rmi $img
+
+echo "$img removed!!"
+else
+
+echo "$img not present"
+
+fi '''
+    }
+    stage('nexus container pull'){
+    sh 'docker pull sonatype/nexus3'
+        
+    }
+    stage('container execution'){
+        sh 'docker run -d -p 9081:8081 --name=nexus -v nexus-data:/nexus-data sonatype/nexus3'
+    }
+  } 
