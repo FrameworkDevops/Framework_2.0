@@ -11,7 +11,7 @@ node {
 
       // Required environment variables
       def sonar_name = "SonarScanner"
-      def sonar_server_url = "http://35.237.227.162:9000"
+      def sonar_server_url = "http://localhost:9000"
       def sonar_auth_token = ""
       def sonar_mojo_version = ''
       def sonar_additional_properties = ''
