@@ -1,0 +1,16 @@
+Below are the steps to install and setup minikube locally on Ubuntu:
+1. sudo -i
+2. sudo apt-get update
+3. sudo apt-get install docker.io
+4. curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+5. chmod +x minikube
+6. sudo mv -v minikube /usr/local/bin
+7. curl -Lo kubectl https://storage.googleapis.com/kubernetes-release/release/v1.8.0/bin/linux/amd64/kubectl
+8. chmod +x kubectl
+9. sudo mv -v kubectl /usr/local/bin
+10. minikube config set vm-driver none
+11. systemctl enable docker
+12. systemctl start docker
+13. minikube start
+14. kubectl run hello-minikube --image=gcr.io/google_containers/echoserver:1.4 --port=8080
+15. kubectl get pod
